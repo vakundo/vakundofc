@@ -12,7 +12,7 @@ const players = [
   {
     name: "Vasco",
     position: "CB",
-    number: "#69",
+    number: "#36",
     role: "Gandu coder hacker",
     bio: "Sadhai ping issue ko complain. Run lina ali slow, tara opinion ra bakchodi chai high speed connection ma.",
     image: "./assets/vascoanimated.png",
