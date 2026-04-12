@@ -43,7 +43,7 @@ const players = [
     name: "Jagdish",
     position: "RB",
     number: "#23",
-    role: "Pace cha, brain chhaina",
+    role: "Pace cha, Goal chhaina",
     bio: "Sabai role ma nachdai hidne. Right side ma running, shouting, ra pure chaos ko trusted source.",
     image: "./assets/jagdishanimated.png",
     initial: "J",
