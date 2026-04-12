@@ -3,1267 +3,146 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vakundo FC — Official Club Site</title>
-  <meta name="description" content="Vakundo FC official team website featuring squad, formation, and club stats." />
-  <style>
-    :root {
-      --bg: #050505;
-      --panel: rgba(255,255,255,0.06);
-      --panel-2: rgba(255,255,255,0.09);
-      --line: rgba(255,255,255,0.12);
-      --text: #f5f5f7;
-      --muted: #a1a1aa;
-      --red: #ff2d2d;
-      --red-soft: rgba(255,45,45,0.18);
-      --blue: #3b82f6;
-      --blue-soft: rgba(59,130,246,0.18);
-      --silver: #d9d9df;
-      --shadow: 0 24px 60px rgba(0,0,0,0.45);
-      --radius-xl: 30px;
-      --radius-lg: 22px;
-      --radius-md: 16px;
-      --maxw: 1220px;
-    }
-
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      font-family: Inter, SF Pro Display, SF Pro Text, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(circle at top center, rgba(255,0,0,0.20), transparent 28%),
-        radial-gradient(circle at bottom left, rgba(59,130,246,0.15), transparent 22%),
-        linear-gradient(180deg, #0a0a0f 0%, #050505 55%, #020202 100%);
-      overflow-x: hidden;
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background:
-        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-      background-size: 36px 36px;
-      mask-image: linear-gradient(180deg, rgba(255,255,255,0.25), transparent 70%);
-      opacity: 0.28;
-    }
-
-    .container {
-      width: min(var(--maxw), calc(100% - 32px));
-      margin: 0 auto;
-    }
-
-    .glass {
-      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid var(--line);
-      box-shadow: var(--shadow);
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      padding: 16px 0;
-      backdrop-filter: blur(22px);
-      -webkit-backdrop-filter: blur(22px);
-      background: linear-gradient(180deg, rgba(5,5,5,0.84), rgba(5,5,5,0.35));
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-      color: var(--text);
-    }
-
-    .brand-badge {
-      width: 48px;
-      height: 48px;
-      border-radius: 14px;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(255,255,255,0.04);
-      box-shadow: 0 10px 28px rgba(255,45,45,0.25);
-      flex: 0 0 auto;
-    }
-
-    .brand-badge img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .brand small {
-      display: block;
-      color: var(--muted);
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      font-size: 0.68rem;
-      margin-bottom: 2px;
-    }
-
-    .brand strong {
-      display: block;
-      font-size: 1.05rem;
-      letter-spacing: -0.03em;
-    }
-
-    .menu {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
-
-    .menu a {
-      text-decoration: none;
-      color: var(--text);
-      font-size: 0.95rem;
-      padding: 10px 16px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.08);
-      transition: 0.25s ease;
-    }
-
-    .menu a:hover {
-      transform: translateY(-1px);
-      background: rgba(255,255,255,0.10);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.25);
-    }
-
-    .hero {
-      padding: 64px 0 28px;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 26px;
-      align-items: stretch;
-    }
-
-    .hero-copy,
-    .hero-card {
-      border-radius: var(--radius-xl);
-      padding: 30px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-copy::before,
-    .hero-card::before,
-    .section-card::before {
-      content: "";
-      position: absolute;
-      inset: -30% auto auto -20%;
-      width: 220px;
-      height: 220px;
-      background: radial-gradient(circle, rgba(255,45,45,0.22), transparent 68%);
-      pointer-events: none;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 14px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.08);
-      color: #d4d4d8;
-      font-size: 0.82rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      margin-bottom: 18px;
-    }
-
-    .eyebrow::before {
-      content: "";
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: linear-gradient(180deg, #ff6b6b, #ff1f1f);
-      box-shadow: 0 0 12px rgba(255,45,45,0.7);
-    }
-
-    h1, h2, h3, h4, p { margin: 0; }
-
-    h1 {
-      font-size: clamp(2.5rem, 6vw, 5.3rem);
-      line-height: 0.95;
-      letter-spacing: -0.07em;
-      max-width: 9ch;
-      margin-bottom: 18px;
-    }
-
-    .hero-copy p {
-      color: var(--muted);
-      font-size: 1.05rem;
-      line-height: 1.75;
-      max-width: 58ch;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-top: 26px;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      min-height: 48px;
-      padding: 0 18px;
-      border-radius: 999px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.95rem;
-      transition: 0.25s ease;
-      border: 1px solid transparent;
-    }
-
-    .btn-primary {
-      color: white;
-      background: linear-gradient(180deg, #ff4949, #cf1111);
-      box-shadow: 0 16px 32px rgba(255,45,45,0.35);
-    }
-
-    .btn-secondary {
-      color: var(--text);
-      background: rgba(255,255,255,0.06);
-      border-color: rgba(255,255,255,0.1);
-    }
-
-    .btn:hover { transform: translateY(-2px); }
-
-    .hero-card {
-      display: grid;
-      grid-template-rows: auto 1fr auto;
-      background:
-        radial-gradient(circle at top, rgba(255,45,45,0.22), transparent 28%),
-        linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
-      min-height: 530px;
-    }
-
-    .hero-logo-wrap {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 10px 0 4px;
-      position: relative;
-    }
-
-    .hero-logo-wrap::after {
-      content: "";
-      position: absolute;
-      inset: auto 18% 12% 18%;
-      height: 44px;
-      background: radial-gradient(circle, rgba(255,45,45,0.55), transparent 68%);
-      filter: blur(12px);
-      z-index: 0;
-    }
-
-    .hero-logo {
-      width: min(100%, 400px);
-      aspect-ratio: 1 / 1;
-      object-fit: contain;
-      position: relative;
-      z-index: 1;
-      filter: drop-shadow(0 22px 40px rgba(255,45,45,0.18));
-    }
-
-    .hero-meta {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-top: 18px;
-    }
-
-    .meta-pill {
-      padding: 15px 14px;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.08);
-      text-align: center;
-    }
-
-    .meta-pill strong {
-      display: block;
-      font-size: 1.1rem;
-      margin-bottom: 4px;
-      letter-spacing: -0.03em;
-    }
-
-    .meta-pill span {
-      color: var(--muted);
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-    }
-
-    section {
-      padding: 26px 0 14px;
-    }
-
-    .section-heading {
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 22px;
-    }
-
-    .section-heading h2 {
-      font-size: clamp(2rem, 4vw, 3rem);
-      letter-spacing: -0.06em;
-      line-height: 1;
-    }
-
-    .section-heading p {
-      color: var(--muted);
-      max-width: 56ch;
-      line-height: 1.65;
-    }
-
-    .section-card {
-      position: relative;
-      border-radius: var(--radius-xl);
-      padding: 26px;
-      overflow: hidden;
-    }
-
-    .squad-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 16px;
-    }
-
-    .player-card {
-      position: relative;
-      border-radius: 22px;
-      padding: 18px;
-      min-height: 184px;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04)),
-        radial-gradient(circle at top right, rgba(255,45,45,0.16), transparent 38%);
-      border: 1px solid rgba(255,255,255,0.1);
-      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
-    }
-
-    .player-card:hover {
-      transform: translateY(-5px);
-      border-color: rgba(255,255,255,0.18);
-      box-shadow: 0 20px 36px rgba(0,0,0,0.28);
-    }
-
-    .player-top {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 14px;
-      margin-bottom: 16px;
-    }
-
-    .position-tag,
-    .number-tag {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 34px;
-      padding: 0 12px;
-      border-radius: 999px;
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      border: 1px solid rgba(255,255,255,0.1);
-      background: rgba(255,255,255,0.05);
-    }
-
-    .player-name {
-      font-size: 1.4rem;
-      letter-spacing: -0.05em;
-      margin-bottom: 8px;
-    }
-
-    .player-one-liner {
-      color: #dddddf;
-      line-height: 1.55;
-      font-size: 0.96rem;
-    }
-
-    .player-role {
-      color: var(--muted);
-      margin-top: 12px;
-      font-size: 0.83rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-    }
-
-    .formation-layout {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 18px;
-    }
-
-    .pitch {
-      position: relative;
-      min-height: 760px;
-      border-radius: 26px;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.1);
-      background:
-        radial-gradient(circle at center, rgba(255,255,255,0.06), transparent 38%),
-        linear-gradient(180deg, #0a1510 0%, #0e2618 45%, #08150d 100%);
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02), inset 0 -50px 80px rgba(0,0,0,0.28);
-    }
-
-    .pitch::before,
-    .pitch::after {
-      content: "";
-      position: absolute;
-      inset: 16px;
-      border: 2px solid rgba(255,255,255,0.11);
-      border-radius: 18px;
-      pointer-events: none;
-    }
-
-    .pitch::after {
-      inset: 0;
-      border: none;
-      background:
-        linear-gradient(180deg, transparent 9.5%, rgba(255,255,255,0.04) 10%, transparent 10.5%, transparent 19.5%, rgba(255,255,255,0.04) 20%, transparent 20.5%, transparent 29.5%, rgba(255,255,255,0.04) 30%, transparent 30.5%, transparent 39.5%, rgba(255,255,255,0.04) 40%, transparent 40.5%, transparent 49.5%, rgba(255,255,255,0.04) 50%, transparent 50.5%, transparent 59.5%, rgba(255,255,255,0.04) 60%, transparent 60.5%, transparent 69.5%, rgba(255,255,255,0.04) 70%, transparent 70.5%, transparent 79.5%, rgba(255,255,255,0.04) 80%, transparent 80.5%, transparent 89.5%, rgba(255,255,255,0.04) 90%, transparent 90.5%);
-      opacity: 0.45;
-      pointer-events: none;
-    }
-
-    .center-line,
-    .center-circle,
-    .penalty-top,
-    .penalty-bottom,
-    .goal-box-top,
-    .goal-box-bottom,
-    .spot-top,
-    .spot-bottom,
-    .arc-top,
-    .arc-bottom {
-      position: absolute;
-      pointer-events: none;
-    }
-
-    .center-line {
-      left: 16px;
-      right: 16px;
-      top: 50%;
-      border-top: 2px solid rgba(255,255,255,0.12);
-    }
-
-    .center-circle {
-      width: 138px;
-      height: 138px;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      border: 2px solid rgba(255,255,255,0.12);
-      border-radius: 50%;
-    }
-
-    .penalty-top,
-    .penalty-bottom {
-      left: 20%;
-      right: 20%;
-      height: 110px;
-      border: 2px solid rgba(255,255,255,0.12);
-      border-radius: 0 0 16px 16px;
-      border-top: none;
-    }
-
-    .penalty-top { top: 16px; transform: none; }
-    .penalty-bottom {
-      bottom: 16px;
-      border-top: 2px solid rgba(255,255,255,0.12);
-      border-bottom: none;
-      border-radius: 16px 16px 0 0;
-    }
-
-    .goal-box-top,
-    .goal-box-bottom {
-      left: 33%;
-      right: 33%;
-      height: 48px;
-      border: 2px solid rgba(255,255,255,0.12);
-      border-top: none;
-      border-radius: 0 0 12px 12px;
-    }
-
-    .goal-box-top { top: 16px; }
-    .goal-box-bottom {
-      bottom: 16px;
-      border-top: 2px solid rgba(255,255,255,0.12);
-      border-bottom: none;
-      border-radius: 12px 12px 0 0;
-    }
-
-    .spot-top,
-    .spot-bottom {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.28);
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    .spot-top { top: 122px; }
-    .spot-bottom { bottom: 122px; }
-
-    .arc-top,
-    .arc-bottom {
-      width: 118px;
-      height: 60px;
-      left: 50%;
-      transform: translateX(-50%);
-      border: 2px solid rgba(255,255,255,0.12);
-      border-left: none;
-      border-right: none;
-      border-bottom: none;
-      border-radius: 100px 100px 0 0;
-    }
-
-    .arc-top { top: 154px; }
-    .arc-bottom {
-      bottom: 154px;
-      border-top: none;
-      border-bottom: 2px solid rgba(255,255,255,0.12);
-      border-radius: 0 0 100px 100px;
-    }
-
-    .formation-title {
-      position: absolute;
-      top: 18px;
-      left: 18px;
-      right: 18px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      z-index: 2;
-    }
-
-    .formation-title .small {
-      color: #d4d4d8;
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-    }
-
-    .formation-title strong {
-      display: block;
-      font-size: 1rem;
-      margin-top: 4px;
-    }
-
-    .chip {
-      padding: 9px 12px;
-      border-radius: 999px;
-      font-size: 0.78rem;
-      border: 1px solid rgba(255,255,255,0.1);
-      background: rgba(0,0,0,0.24);
-      color: #ececf0;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-
-    .player-node {
-      position: absolute;
-      left: var(--x);
-      top: var(--y);
-      transform: translate(-50%, -50%);
-      width: 116px;
-      z-index: 3;
-      text-align: center;
-    }
-
-    .player-node .circle {
-      width: 70px;
-      height: 70px;
-      margin: 0 auto 10px;
-      border-radius: 22px;
-      display: grid;
-      place-items: center;
-      font-weight: 800;
-      letter-spacing: -0.04em;
-      font-size: 1.05rem;
-      color: white;
-      border: 1px solid rgba(255,255,255,0.2);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.20), rgba(255,255,255,0.04)),
-        linear-gradient(145deg, rgba(255,45,45,0.80), rgba(32,32,32,0.45));
-      box-shadow:
-        0 18px 30px rgba(0,0,0,0.35),
-        0 0 0 8px rgba(255,255,255,0.02),
-        0 0 28px rgba(255,45,45,0.2);
-    }
-
-    .player-node .pos {
-      display: inline-flex;
-      padding: 5px 8px;
-      border-radius: 999px;
-      background: rgba(0,0,0,0.35);
-      border: 1px solid rgba(255,255,255,0.1);
-      color: #ececf0;
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 6px;
-    }
-
-    .player-node strong {
-      display: block;
-      font-size: 0.92rem;
-      letter-spacing: -0.03em;
-    }
-
-    .player-node span {
-      display: block;
-      color: #d1d5db;
-      font-size: 0.78rem;
-      margin-top: 4px;
-    }
-
-    .formation-side {
-      display: grid;
-      gap: 16px;
-      align-content: start;
-    }
-
-    .panel {
-      border-radius: 24px;
-      padding: 20px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .panel h3 {
-      font-size: 1.2rem;
-      letter-spacing: -0.04em;
-      margin-bottom: 8px;
-    }
-
-    .panel p {
-      color: var(--muted);
-      line-height: 1.65;
-      margin-bottom: 14px;
-    }
-
-    .tactic-list {
-      display: grid;
-      gap: 10px;
-    }
-
-    .tactic-item {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 10px 12px;
-      align-items: start;
-      padding: 12px 14px;
-      border-radius: 16px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.07);
-    }
-
-    .tactic-item b {
-      display: block;
-      margin-bottom: 2px;
-      letter-spacing: -0.02em;
-    }
-
-    .dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: linear-gradient(180deg, #fff, #ff2d2d);
-      box-shadow: 0 0 14px rgba(255,45,45,0.7);
-      margin-top: 7px;
-    }
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 16px;
-      margin-bottom: 18px;
-    }
-
-    .stat-card {
-      border-radius: 24px;
-      padding: 22px;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04)),
-        radial-gradient(circle at bottom right, rgba(59,130,246,0.14), transparent 38%);
-      border: 1px solid rgba(255,255,255,0.09);
-      min-height: 178px;
-    }
-
-    .stat-label {
-      color: var(--muted);
-      font-size: 0.82rem;
-      text-transform: uppercase;
-      letter-spacing: 0.11em;
-      margin-bottom: 14px;
-      display: block;
-    }
-
-    .stat-value {
-      font-size: clamp(1.9rem, 3vw, 2.8rem);
-      font-weight: 800;
-      letter-spacing: -0.06em;
-      margin-bottom: 12px;
-      line-height: 1;
-    }
-
-    .stat-card p {
-      color: #d6d6db;
-      line-height: 1.55;
-      font-size: 0.96rem;
-    }
-
-    .mini-stats {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 16px;
-    }
-
-    .mini-card {
-      border-radius: 24px;
-      padding: 22px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .mini-card h3 {
-      font-size: 1.15rem;
-      margin-bottom: 14px;
-      letter-spacing: -0.03em;
-    }
-
-    .mini-list {
-      display: grid;
-      gap: 10px;
-    }
-
-    .mini-list div {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      padding: 12px 14px;
-      border-radius: 15px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.06);
-    }
-
-    .mini-list span:first-child {
-      color: #f3f4f6;
-    }
-
-    .mini-list span:last-child {
-      color: var(--muted);
-      text-align: right;
-    }
-
-    footer {
-      padding: 24px 0 42px;
-    }
-
-    .footer-card {
-      padding: 20px 24px;
-      border-radius: 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      color: var(--muted);
-    }
-
-    .footer-card strong {
-      color: var(--text);
-      display: block;
-      margin-bottom: 5px;
-      font-size: 1rem;
-      letter-spacing: -0.03em;
-    }
-
-    .footer-note {
-      font-size: 0.95rem;
-      line-height: 1.6;
-      max-width: 60ch;
-    }
-
-    @media (max-width: 1120px) {
-      .hero-grid,
-      .formation-layout,
-      .stats-grid,
-      .squad-grid,
-      .mini-stats {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .hero-grid > *:first-child,
-      .formation-layout > *:first-child,
-      .stats-grid > *:first-child,
-      .squad-grid > *:first-child,
-      .mini-stats > *:first-child {
-        grid-column: auto;
-      }
-
-      .squad-grid { grid-template-columns: repeat(2, 1fr); }
-      .stats-grid { grid-template-columns: repeat(2, 1fr); }
-      .formation-layout { grid-template-columns: 1fr; }
-      .hero-grid { grid-template-columns: 1fr; }
-      .pitch { min-height: 700px; }
-    }
-
-    @media (max-width: 720px) {
-      .container { width: min(var(--maxw), calc(100% - 20px)); }
-      header { padding: 12px 0; }
-      .nav { flex-direction: column; align-items: stretch; }
-      .menu { justify-content: flex-start; }
-      .hero { padding-top: 34px; }
-      .hero-copy, .hero-card, .section-card { padding: 20px; }
-      .squad-grid, .stats-grid, .mini-stats { grid-template-columns: 1fr; }
-      .hero-meta { grid-template-columns: 1fr; }
-      .section-heading { flex-direction: column; align-items: flex-start; }
-      .pitch { min-height: 780px; }
-      .player-node { width: 94px; }
-      .player-node .circle { width: 58px; height: 58px; font-size: 0.95rem; border-radius: 18px; }
-      .player-node strong { font-size: 0.82rem; }
-      .player-node span { font-size: 0.68rem; }
-      .footer-card { flex-direction: column; align-items: flex-start; }
-    }
-  </style>
+  <title>Vakundo FC</title>
+  <meta
+    name="description"
+    content="Vakundo FC redesigned as a cinematic, playful club site with animated player spotlights, squad personality, and a clean premium feel."
+  />
+  <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
-  <header>
-    <div class="container nav">
+  <div class="page-shell">
+    <header class="site-header">
       <a class="brand" href="#top">
-        <span class="brand-badge"><img src="download.png" alt="Vakundo FC logo" /></span>
+        <img src="./assets/vakundo-logo.png" alt="Vakundo FC crest" />
         <span>
-          <small>Official Club Site</small>
-          <strong>Vakundo FC</strong>
+          <small>Vakundo FC</small>
+          <strong>Official Club Site</strong>
         </span>
       </a>
-      <nav class="menu" aria-label="Primary menu">
+
+      <nav class="top-nav" aria-label="Primary">
         <a href="#squad">Squad</a>
-        <a href="#formation">Formation</a>
-        <a href="#club-stats">Club Stats</a>
+        <a href="#lineup">Lineup</a>
+        <a href="#energy">Club Energy</a>
       </nav>
-    </div>
-  </header>
+    </header>
 
-  <main id="top">
-    <section class="hero">
-      <div class="container hero-grid">
-        <div class="hero-copy glass">
-          <div class="eyebrow">EA Sports FC, Vakundo attitude</div>
+    <main id="top">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Football. Friendship. Full bakchodi.</p>
           <h1>Vakundo FC</h1>
-          <p>
-            खेल्ने काम त लगभग शून्य नै, सधैं बकचोदी र अरूको खिल्ली उडाउनमै व्यस्त।
-            गेम सुरु भयो भने पनि ध्यान खेलमा भन्दा गफ, जोक र मजाकमै बढी जान्छ।
-            टिमवर्क, स्किल, स्ट्राटेजी सबै 0% जस्तै — तर हल्ला, हाँसो र बकचोदी भने १०००% भन्दा पनि माथि
-
-            Gameplay 0 % — बकचोदी 1000 % 🔥
+          <p class="hero-text">
+            A team with questionable decision-making, elite confidence, and enough personality to deserve a far
+            better website than the one it had before.
           </p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#formation">See Formation</a>
-            <a class="btn btn-secondary" href="#squad">Meet the Squad</a>
-          </div>
-          <div class="hero-meta">
-            <div class="meta-pill">
-              <strong>4-3-3</strong>
-              <span>Formation</span>
-            </div>
-            <div class="meta-pill">
-              <strong>11</strong>
-              <span>Starting XI</span>
-            </div>
-            <div class="meta-pill">
-              <strong>100%</strong>
-              <span>Entertainment</span>
-            </div>
+            <a class="button button-primary" href="#squad">Explore the squad</a>
+            <a class="button button-secondary" href="#lineup">See the 4-3-3</a>
           </div>
         </div>
 
-        <div class="hero-card glass">
-          <div class="eyebrow">Club Crest</div>
-          <div class="hero-logo-wrap">
-            <img class="hero-logo" src="download.png" alt="Vakundo FC club crest" />
-          </div>
-          <div class="hero-meta">
-            <div class="meta-pill">
-              <strong>Guffadi Mode</strong>
-              <span>Identity</span>
-            </div>
-            <div class="meta-pill">
-              <strong>Red / Black</strong>
-              <span>Colors</span>
-            </div>
-            <div class="meta-pill">
-              <strong>Unreal Vibes</strong>
-              <span>Match Aura</span>
-            </div>
-          </div>
+        <div class="hero-stage" aria-hidden="true">
+          <div class="hero-glow hero-glow-red"></div>
+          <div class="hero-glow hero-glow-gold"></div>
+          <img class="hero-group" src="./assets/group-pic-with-logo.png" alt="" />
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section id="squad">
-      <div class="container">
+      <section class="squad-lab" id="squad">
         <div class="section-heading">
-          <div>
-            <div class="eyebrow">Menu 1</div>
-            <h2>Squad List</h2>
-          </div>
-          <p>
-            The Vakundo FC starting eleven. Every player brings a नमुनापन.
-          </p>
+          <p class="eyebrow">Squad spotlight</p>
+          <h2>Meet the chaos properly.</h2>
         </div>
 
-        <div class="section-card glass">
-          <div class="squad-grid">
-            <article class="player-card">
-              <div class="player-top"><span class="position-tag">GK</span><span class="number-tag">#1</span></div>
-              <h3 class="player-name">Pigg</h3>
-              <p class="player-one-liner">Kahile kahi matra khelna aune, keeper bhaye pani save garnu bhanda afai goal khane</p>
-              <div class="player-role"> Cheerleader with Gloves</div>
-            </article>
+        <div class="squad-layout">
+          <aside class="spotlight-panel">
+            <div class="spotlight-art">
+              <div class="spotlight-glow"></div>
+              <div id="spotlight-figure" class="spotlight-figure"></div>
+            </div>
 
-            <article class="player-card">
-              <div class="player-top"><span class="position-tag">CB</span><span class="number-tag">#69</span></div>
-              <h3 class="player-name">Vasco</h3>
-              <p class="player-one-liner">Sadhai “ping issue” ko complain, run lina pani audaina, Nepal ma basera NA time ma bachne</p>
-              <div class="player-role"> Gandu Coder Hacker </div>
-            </article>
+            <div class="spotlight-copy">
+              <div class="meta-row">
+                <span id="spotlight-position" class="pill"></span>
+                <span id="spotlight-number" class="pill pill-dark"></span>
+              </div>
+              <h3 id="spotlight-name"></h3>
+              <p id="spotlight-role" class="spotlight-role"></p>
+              <p id="spotlight-bio" class="spotlight-bio"></p>
+            </div>
+          </aside>
 
-            <article class="player-card">
-              <div class="player-top"><span class="position-tag">CB</span><span class="number-tag">#96</span></div>
-              <h3 class="player-name">Humble</h3>
-              <p class="player-one-liner">“Malai ta pass chahiyo” bhandai sadhai pass matra magne, khelne style chai chaina</p>
-              <div class="player-role"> Pass ko Ashh </div>
-            </article>
-
-            <article class="player-card">
-              <div class="player-top"><span class="position-tag">LB</span><span class="number-tag">#3</span></div>
-              <h3 class="player-name">Mango</h3>
-              <p class="player-one-liner">“Kasto goal hanxu ta” bhandai miss garne, tara defence ma chai kasaile sakdaina ne feri</p>
-              <div class="player-role"> Finishing = Missing </div>
-            </article>
-
-            <article class="player-card">
-              <div class="player-top"><span class="position-tag">RB</span><span class="number-tag">#8</span></div>
-              <h3 class="player-name">Jagdish</h3>
-              <p class="player-one-liner">Sabai role ma nachdai hidne, bakchodi garna ma number 1</p>
-              <div class="player-role"> pace xa brain xaena </div>
-            </article>
-
-            <article class="player-card">
-              <div class="player-top"><span class="position-tag">LDM</span><span class="number-tag">#11</span></div>
-              <h3 class="player-name">Adarsha</h3>
-              <p class="player-one-liner">Sadhai “EU server ma khelam” bhanne, aru server dekhi sato jane manxe</p>
-              <div class="player-role"> Tattii Dribbller </div>
-            </article>
-
-            <article class="player-card">
-              <div class="player-top"><span class="position-tag">RDM</span><span class="number-tag">#6</span></div>
-              <h3 class="player-name">Pramod</h3>
-              <p class="player-one-liner">CAM basera “kasto pass diya ta” bhanne, ST basda teammate ko sato jane</p>
-              <div class="player-role"> Opponent ko playmaker </div>
-            </article>
-
-            <article class="player-card">
-              <div class="player-top"><span class="position-tag">CAM</span><span class="number-tag">#7</span></div>
-              <h3 class="player-name">Nasty</h3>
-              <p class="player-one-liner">Khelna bhanda badhi “controller bigriyo” bhanne bahana banaune</p>
-              <div class="player-role"> Guiyee Controller </div>
-            </article>
-
-            <article class="player-card">
-              <div class="player-top"><span class="position-tag">LW</span><span class="number-tag">#12</span></div>
-              <h3 class="player-name">Kiran</h3>
-              <p class="player-one-liner">Spin the wheel garepachi teammate dekhnai nasakne, ani tyai bela usko PC nai shutdown hune</p>
-              <div class="player-role"> Finishing System Crash </div>
-            </article>
-
-            <article class="player-card">
-              <div class="player-top"><span class="position-tag">RW</span><span class="number-tag">#23</span></div>
-              <h3 class="player-name">Hyozu</h3>
-              <p class="player-one-liner">Game khelna chodyo, tikitaka ma battle khelna jane</p>
-              <div class="player-role"> Double Tap Tap  </div>
-            </article>
-
-            <article class="player-card">
-              <div class="player-top"><span class="position-tag">ST</span><span class="number-tag">#10</span></div>
-              <h3 class="player-name">SAJAN</h3>
-              <p class="player-one-liner">Running ulto palto ligne, ani “yee pagal” ra “hanuman” bhandai basne Goal na hanne </p>
-              <div class="player-role"> Indecisive Striker </div>
-            </article>
-          </div>
+          <div id="roster-list" class="roster-list"></div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section id="formation">
-      <div class="container">
+      <section class="lineup-section" id="lineup">
         <div class="section-heading">
-          <div>
-            <div class="eyebrow">Menu 2</div>
-            <h2>4-3-3 Formation</h2>
-          </div>
-          <p>
-            A slick, modern football-game inspired tactical screen showing how Vakundo FC lines up when the match starts and the trash talk reaches full volume.
-          </p>
+          <p class="eyebrow">Matchday setup</p>
+          <h2>4-3-3, but emotionally unstable.</h2>
         </div>
 
-        <div class="section-card glass">
-          <div class="formation-layout">
-            <div class="pitch">
-              <div class="formation-title">
-                <div>
-                  <div class="small">Matchday Tactical View</div>
-                  <strong>4-3-3 Random Attack</strong>
-                </div>
-                <div class="chip">Vibes Only</div>
+        <div class="lineup-layout lineup-layout-single">
+          <div class="pitch-board pitch-board-fc">
+            <div class="pitch-ui">
+              <div>
+                <span class="pitch-ui-label">Tactic Preview</span>
+                <strong>Vakundo FC 4-3-3</strong>
               </div>
-
-              <div class="center-line"></div>
-              <div class="center-circle"></div>
-              <div class="penalty-top"></div>
-              <div class="penalty-bottom"></div>
-              <div class="goal-box-top"></div>
-              <div class="goal-box-bottom"></div>
-              <div class="spot-top"></div>
-              <div class="spot-bottom"></div>
-              <div class="arc-top"></div>
-              <div class="arc-bottom"></div>
-
-              <div class="player-node" style="--x:50%; --y:88%;">
-                <div class="circle">1</div>
-                <div class="pos">GK</div>
-                <strong>Pigg</strong>
-                <span>#1</span>
-              </div>
-
-              <div class="player-node" style="--x:24%; --y:72%;">
-                <div class="circle">3</div>
-                <div class="pos">LB</div>
-                <strong>Mango</strong>
-                <span>#3</span>
-              </div>
-
-              <div class="player-node" style="--x:40%; --y:74%;">
-                <div class="circle">69</div>
-                <div class="pos">CB</div>
-                <strong>Vasco</strong>
-                <span>#69</span>
-              </div>
-
-              <div class="player-node" style="--x:60%; --y:74%;">
-                <div class="circle">96</div>
-                <div class="pos">CB</div>
-                <strong>Humble</strong>
-                <span>#96</span>
-              </div>
-
-              <div class="player-node" style="--x:76%; --y:72%;">
-                <div class="circle">8</div>
-                <div class="pos">RB</div>
-                <strong>Jagdish</strong>
-                <span>#8</span>
-              </div>
-
-              <div class="player-node" style="--x:35%; --y:54%;">
-                <div class="circle">11</div>
-                <div class="pos">LDM</div>
-                <strong>Adarsha</strong>
-                <span>#11</span>
-              </div>
-
-              <div class="player-node" style="--x:65%; --y:54%;">
-                <div class="circle">6</div>
-                <div class="pos">RDM</div>
-                <strong>Pramod</strong>
-                <span>#6</span>
-              </div>
-
-              <div class="player-node" style="--x:50%; --y:41%;">
-                <div class="circle">7</div>
-                <div class="pos">CAM</div>
-                <strong>Nasty</strong>
-                <span>#7</span>
-              </div>
-
-              <div class="player-node" style="--x:22%; --y:20%;">
-                <div class="circle">12</div>
-                <div class="pos">LW</div>
-                <strong>Kiran</strong>
-                <span>#12</span>
-              </div>
-
-              <div class="player-node" style="--x:78%; --y:20%;">
-                <div class="circle">23</div>
-                <div class="pos">RW</div>
-                <strong>Hyozu</strong>
-                <span>#23</span>
-              </div>
-
-              <div class="player-node" style="--x:50%; --y:12%;">
-                <div class="circle">10</div>
-                <div class="pos">ST</div>
-                <strong>SAJAN</strong>
-                <span>#10</span>
-              </div>
+              <span class="pitch-ui-badge">Attack</span>
             </div>
 
-            <div class="formation-side">
-              <div class="panel glass">
-                <h3>System Notes</h3>
-                <p>
-                  The setup is balanced on paper and mildly dangerous in practice. Fullbacks push, the double pivot protects, and Nasty gets creative permission nobody else is brave enough to ask for.
-                </p>
-                <div class="tactic-list">
-                  <div class="tactic-item">
-                    <span class="dot"></span>
-                    <div><b>Front Three</b> Kiran and Hyozu stretch the width while SAJAN stays central hunting goals like they owe him money.</div>
-                  </div>
-                  <div class="tactic-item">
-                    <span class="dot"></span>
-                    <div><b>Midfield Screen</b> Adarsha and Pramod clean the mess before it reaches Vasco and Humble.</div>
-                  </div>
-                  <div class="tactic-item">
-                    <span class="dot"></span>
-                    <div><b>Creative Core</b> Nasty operates between the lines and between people’s patience levels.</div>
-                  </div>
-                </div>
-              </div>
+            <div class="pitch pitch-fc">
+              <div class="pitch-mark pitch-circle"></div>
+              <div class="pitch-mark pitch-line"></div>
+              <div class="pitch-mark pitch-box pitch-box-top"></div>
+              <div class="pitch-mark pitch-box pitch-box-bottom"></div>
+              <div class="pitch-mark pitch-goal pitch-goal-top"></div>
+              <div class="pitch-mark pitch-goal pitch-goal-bottom"></div>
+              <div id="pitch-nodes"></div>
+            </div>
 
-              <div class="panel glass">
-                <h3>Game Style Readout</h3>
-                <p>
-                  Inspired by a premium football-game presentation: crisp tactical spacing, dramatic contrast, and enough glow to suggest the club is permanently in a highlight reel.
-                </p>
-                <div class="mini-list">
-                  <div><span>Build Up</span><span>Fast until someone overthinks</span></div>
-                  <div><span>Chance Creation</span><span>Mostly clever, slightly reckless</span></div>
-                  <div><span>Defensive Line</span><span>High enough to scare Pigg</span></div>
-                  <div><span>Press Trigger</span><span>Any loose touch or loud insult</span></div>
-                </div>
-              </div>
-
-              <div class="panel glass">
-                <h3>Vakundo Match Formula</h3>
-                <p>
-                  1% fear, 49% teamwork, 50% pure audacity. Somehow it works more often than it should.
-                </p>
-              </div>
+            <div class="pitch-confirm">
+              <button class="confirm-button" type="button">Confirm</button>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section id="club-stats">
-      <div class="container">
+      <section class="energy-section" id="energy">
         <div class="section-heading">
-          <div>
-            <div class="eyebrow">Menu 3</div>
-            <h2>Club Stats</h2>
-          </div>
-          <p>
-            Not every club measures greatness correctly. Vakundo FC tracks the truly important data: laughter, chaos, style, and suspicious levels of self-belief.
-          </p>
+          <p class="eyebrow">Club energy</p>
+          <h2>The only stats that matter.</h2>
         </div>
 
-        <div class="section-card glass">
-          <div class="stats-grid">
-            <article class="stat-card">
-              <span class="stat-label">Average Confidence</span>
-              <div class="stat-value">99 OVR</div>
-              <p>The squad believes every shot is top bins until the replay proves otherwise.</p>
-            </article>
-
-            <article class="stat-card">
-              <span class="stat-label">Excuses Per Match</span>
-              <div class="stat-value">14.7</div>
-              <p>Lag, wrong boots, bad grass, moon angle — the analysis is always deep.</p>
-            </article>
-
-            <article class="stat-card">
-              <span class="stat-label">Nutmeg Attempts</span>
-              <div class="stat-value">∞</div>
-              <p>Nasty and Hyozu alone are responsible for several defender trust issues.</p>
-            </article>
-
-            <article class="stat-card">
-              <span class="stat-label">Team Chemistry</span>
-              <div class="stat-value">Elite*</div>
-              <p>*Drops temporarily whenever SAJAN shoots instead of squaring the ball.</p>
-            </article>
-          </div>
-
-          <div class="mini-stats">
-            <div class="mini-card">
-              <h3>Unofficial Records</h3>
-              <div class="mini-list">
-                <div><span>Longest Slide Tackle</span><span>Vasco • nearly in another postcode</span></div>
-                <div><span>Loudest Goal Call</span><span>SAJAN • heard two streets away</span></div>
-                <div><span>Most Calm Under Pressure</span><span>Pramod • heartbeat probably optional</span></div>
-                <div><span>Most Dramatic Save Pose</span><span>Pigg • even for routine catches</span></div>
-              </div>
-            </div>
-
-            <div class="mini-card">
-              <h3>Squad Personality Metrics</h3>
-              <div class="mini-list">
-                <div><span>Ball Retention</span><span>Strong, unless tricks get involved</span></div>
-                <div><span>Wing Speed</span><span>Illegal in three districts</span></div>
-                <div><span>Defensive Intimidation</span><span>Powered by Vasco + Humble</span></div>
-                <div><span>Celebration Sync</span><span>Beautifully uncoordinated</span></div>
-              </div>
-            </div>
-          </div>
+        <div class="energy-grid">
+          <article>
+            <span>Confidence</span>
+            <strong>99 OVR</strong>
+            <p>Every shot looks world class until the replay starts.</p>
+          </article>
+          <article>
+            <span>Excuses</span>
+            <strong>14.7</strong>
+            <p>Lag, timing, controller, moon phase. Analysis is never short.</p>
+          </article>
+          <article>
+            <span>Bakchodi</span>
+            <strong>1000%</strong>
+            <p>Even a bad match still produces elite entertainment.</p>
+          </article>
+          <article>
+            <span>Chemistry</span>
+            <strong>Elite*</strong>
+            <p>*Unless somebody ignores the square pass for personal legacy reasons.</p>
+          </article>
         </div>
-      </div>
-    </section>
-  </main>
+      </section>
+    </main>
+  </div>
 
-  <footer>
-    <div class="container">
-      <div class="footer-card glass">
-        <div>
-          <strong>Vakundo FC</strong>
-          <div class="footer-note">Gameplay ta 0% nai hos, tara hamro team ko vibe, bakchodi ra entertainment 1000% — jitna bhanda majja lina aako squad. </div>
-        </div>
-        <a class="btn btn-secondary" href="#top">Back to Top</a>
-      </div>
-    </div>
-  </footer>
+  <script src="./app.js"></script>
 </body>
 </html>
