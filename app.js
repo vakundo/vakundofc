@@ -5,7 +5,7 @@ const players = [
     number: "#1",
     role: "Cheerleader with gloves",
     bio: "Kahile kahi matra save hero, kahile afai biggest danger. Match ko entertainment package yehi bata start huncha.",
-    image: null,
+    image: "./assets/pig.png",
     initial: "P",
     pitch: { x: "50%", y: "88%" }
   },
