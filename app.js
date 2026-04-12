@@ -85,7 +85,7 @@ const players = [
     number: "#9",
     role: "Finishing system crash",
     bio: "Spin garepachi teammate dekhdaina. PC shutdown chance ra miracle moment chance praya same huncha.",
-    image: null,
+    image: "./assets/kiran.png",
     initial: "K",
     pitch: { x: "16%", y: "22%" }
   },
