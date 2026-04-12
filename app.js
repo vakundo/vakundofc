@@ -95,7 +95,7 @@ const players = [
     number: "#69",
     role: "Double tap tap",
     bio: "Kabhi side quest, kabhi wing terror. Avatar aauna baaki cha, vibe already locked in.",
-    image: null,
+    image: "./assets/taptap.png",
     initial: "H",
     pitch: { x: "84%", y: "22%" }
   },
