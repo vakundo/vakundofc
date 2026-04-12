@@ -22,7 +22,7 @@ const players = [
   {
     name: "Humble",
     position: "CB",
-    number: "#96",
+    number: "#11",
     role: "Pass ko ashh",
     bio: "Malai pass chahiyo bhanne line usko built-in soundtrack ho. Confidence cha, subtlety chaina.",
     image: "./assets/humbleanimated.png",
@@ -42,7 +42,7 @@ const players = [
   {
     name: "Jagdish",
     position: "RB",
-    number: "#8",
+    number: "#23",
     role: "Pace cha, brain chhaina",
     bio: "Sabai role ma nachdai hidne. Right side ma running, shouting, ra pure chaos ko trusted source.",
     image: "./assets/jagdishanimated.png",
@@ -52,7 +52,7 @@ const players = [
   {
     name: "Adarsha",
     position: "LDM",
-    number: "#11",
+    number: "#10",
     role: "Tattii dribbler",
     bio: "EU server ko ambassador. Midfield ma attitude dherai, avatar aile waiting room ma.",
     image: null,
@@ -62,7 +62,7 @@ const players = [
   {
     name: "Pramod",
     position: "RDM",
-    number: "#6",
+    number: "#8",
     role: "Opponent ko playmaker",
     bio: "Pass diyera afai commentary dincha. Calm dekhincha, tara game ko script change garna sakcha.",
     image: "./assets/pramodanimated.png",
@@ -82,7 +82,7 @@ const players = [
   {
     name: "Kiran",
     position: "LW",
-    number: "#12",
+    number: "#9",
     role: "Finishing system crash",
     bio: "Spin garepachi teammate dekhdaina. PC shutdown chance ra miracle moment chance praya same huncha.",
     image: null,
@@ -92,7 +92,7 @@ const players = [
   {
     name: "Hyozu",
     position: "RW",
-    number: "#23",
+    number: "#69",
     role: "Double tap tap",
     bio: "Kabhi side quest, kabhi wing terror. Avatar aauna baaki cha, vibe already locked in.",
     image: null,
@@ -102,7 +102,7 @@ const players = [
   {
     name: "Sajan",
     position: "ST",
-    number: "#10",
+    number: "#99",
     role: "Indecisive striker",
     bio: "Run line ulto hunchha, confidence sidha hunchha. Goal chai kahile hero, kahile mystery.",
     image: null,
