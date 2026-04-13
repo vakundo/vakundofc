@@ -105,7 +105,7 @@ const players = [
     number: "#99",
     role: "Indecisive striker",
     bio: "Run line ulto hunchha, confidence sidha hunchha. Goal chai kahile hero, kahile mystery.",
-    image: null,
+    image: "./assets/sajan.png",
     initial: "S",
     pitch: { x: "50%", y: "14%" }
   }
