@@ -120,7 +120,7 @@ const spotlightRole = document.getElementById("spotlight-role");
 const spotlightBio = document.getElementById("spotlight-bio");
 const pitchNodes = document.getElementById("pitch-nodes");
 
-let activePlayer = players[7];
+let activePlayer = players[3];
 
 function renderSpotlight(player) {
   spotlightPosition.textContent = player.position;
