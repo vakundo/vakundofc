@@ -355,6 +355,7 @@ a {
   grid-template-columns: 1.02fr 0.98fr;
   gap: 22px;
   align-items: start;
+  height: 700px;
 }
 
 .spotlight-panel,
@@ -468,6 +469,9 @@ a {
 .roster-list {
   display: grid;
   gap: 14px;
+  overflow-y: auto;
+  height: 100%;
+  padding-right: 6px;
 }
 
 .roster-button {
