@@ -118,6 +118,7 @@ const spotlightNumber = document.getElementById("spotlight-number");
 const spotlightName = document.getElementById("spotlight-name");
 const spotlightRole = document.getElementById("spotlight-role");
 const spotlightBio = document.getElementById("spotlight-bio");
+const spotlightLink = document.getElementById("spotlight-link");
 const pitchNodes = document.getElementById("pitch-nodes");
 
 let activePlayer = players[3];
@@ -134,6 +135,8 @@ function renderSpotlight(player) {
   } else {
     spotlightFigure.innerHTML = `<div class="spotlight-placeholder">${player.initial}</div>`;
   }
+
+  spotlightLink.href = `./player.html?name=${encodeURIComponent(player.name)}`;
 }
 
 function renderRoster() {
@@ -157,6 +160,7 @@ function renderRoster() {
       <div class="roster-meta">
         <b>${player.number}</b>
         <small>${player.position}</small>
+        <a class="roster-profile-link" href="./player.html?name=${encodeURIComponent(player.name)}" onclick="event.stopPropagation()">View Profile &rarr;</a>
       </div>
     `;
 
@@ -164,6 +168,10 @@ function renderRoster() {
       activePlayer = player;
       renderSpotlight(player);
       renderRoster();
+    });
+
+    button.addEventListener("dblclick", () => {
+      window.location.href = `./player.html?name=${encodeURIComponent(player.name)}`;
     });
 
     rosterList.appendChild(button);
@@ -174,11 +182,11 @@ function renderPitch() {
   pitchNodes.innerHTML = players
     .map(
       (player) => `
-        <div class="pitch-node" style="--x:${player.pitch.x}; --y:${player.pitch.y};">
+        <a class="pitch-node" href="./player.html?name=${encodeURIComponent(player.name)}" style="--x:${player.pitch.x}; --y:${player.pitch.y};">
           <div class="pitch-node-badge">${player.number.replace("#", "")}</div>
           <strong>${player.name}</strong>
           <span>${player.position}</span>
-        </div>
+        </a>
       `
     )
     .join("");

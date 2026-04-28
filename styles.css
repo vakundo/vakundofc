@@ -465,6 +465,11 @@ a {
   font-size: 1.04rem;
 }
 
+.spotlight-profile-btn {
+  margin-top: 22px;
+  font-size: 0.88rem;
+}
+
 .roster-list {
   display: grid;
   gap: 14px;
@@ -550,6 +555,26 @@ a {
   color: var(--muted);
   text-transform: uppercase;
   letter-spacing: 0.12em;
+}
+
+.roster-profile-link {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: white;
+  background: linear-gradient(135deg, #ff6547, #cb2614);
+  box-shadow: 0 6px 16px rgba(222, 56, 31, 0.2);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  text-decoration: none;
+}
+
+.roster-profile-link:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(222, 56, 31, 0.3);
 }
 
 .lineup-layout {
