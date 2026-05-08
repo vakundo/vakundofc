@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vakundo FC Admin</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <style>
+    .admin-shell{max-width:1000px;margin:2rem auto;padding:1rem;color:white}
+    .admin-card{background:#141414;border:1px solid #333;border-radius:16px;padding:1rem;margin-bottom:1rem}
+    .admin-row{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:.5rem;align-items:center;padding:.5rem 0;border-bottom:1px solid #2b2b2b}
+    .admin-row:last-child{border-bottom:none}
+    input,select{padding:.5rem;border-radius:8px;border:1px solid #555;background:#222;color:white}
+    button{padding:.5rem .75rem;border:none;border-radius:8px;cursor:pointer}
+    .danger{background:#9f1a1a;color:white}
+    .primary{background:#d7a62b;color:#111}
+  </style>
+</head>
+<body>
+  <div class="admin-shell">
+    <h1>Admin Dashboard</h1>
+    <p>Manage users with create, update, and delete actions.</p>
+
+    <div class="admin-card">
+      <label>Admin Token</label>
+      <input id="token" placeholder="Enter Bearer token" />
+      <button id="connect" class="primary">Connect</button>
+      <small id="hint"></small>
+    </div>
+
+    <div class="admin-card">
+      <h2>Add User</h2>
+      <div class="admin-row" style="grid-template-columns:1fr 1fr 1fr auto; border:none;">
+        <input id="newName" placeholder="Name" />
+        <input id="newEmail" placeholder="Email" />
+        <select id="newRole"><option>user</option><option>manager</option><option>admin</option></select>
+        <button id="addUser" class="primary">Add</button>
+      </div>
+    </div>
+
+    <div class="admin-card">
+      <h2>Users</h2>
+      <div id="users"></div>
+    </div>
+  </div>
+<script src="./admin.js"></script>
+</body>
+</html>

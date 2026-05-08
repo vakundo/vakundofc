@@ -1,0 +1,9 @@
+{
+  "name": "vakundofc",
+  "version": "1.0.0",
+  "description": "Vakundo FC site with basic admin backend",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  }
+}

@@ -1,0 +1,5 @@
+[
+  {"id":1,"name":"Admin User","email":"admin@vakundofc.com","role":"admin","active":true},
+  {"id":2,"name":"Squad Manager","email":"manager@vakundofc.com","role":"manager","active":true},
+  {"id":3,"name":"Fan Member","email":"fan@vakundofc.com","role":"user","active":true}
+]
